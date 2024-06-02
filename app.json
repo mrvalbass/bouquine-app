@@ -27,10 +27,20 @@
       "favicon": "./assets/images/favicon.png"
     },
     "plugins": [
-      "expo-router"
+      "expo-router",
+      "expo-font"
     ],
     "experiments": {
       "typedRoutes": true
-    }
+    },
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "5b20d0f9-b524-4eb9-aa05-c3b8966d1f90"
+      }
+    },
+    "owner": "mrvalbass"
   }
 }
