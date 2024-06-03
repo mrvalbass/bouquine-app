@@ -13,13 +13,17 @@
       "backgroundColor": "#ffffff"
     },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "googleServicesFile": "./GoogleService-Info.plist",
+      "bundleIdentifier": "com.valentinGuillot.bouquine"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "googleServicesFile": "./google-services.json",
+      "package": "com.valentinGuillot.bouquine"
     },
     "web": {
       "bundler": "metro",
@@ -28,7 +32,10 @@
     },
     "plugins": [
       "expo-router",
-      "expo-font"
+      "expo-font",
+      "expo-secure-store",
+      "@react-native-firebase/app",
+      "@react-native-firebase/auth"
     ],
     "experiments": {
       "typedRoutes": true
@@ -41,6 +48,12 @@
         "projectId": "5b20d0f9-b524-4eb9-aa05-c3b8966d1f90"
       }
     },
-    "owner": "mrvalbass"
+    "owner": "mrvalbass",
+    "runtimeVersion": {
+      "policy": "appVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/5b20d0f9-b524-4eb9-aa05-c3b8966d1f90"
+    }
   }
 }

@@ -1,75 +1,22 @@
-import { Text, View, useWindowDimensions } from "react-native";
-import { StatusBar } from "expo-status-bar";
-import {
-  useFonts,
-  EBGaramond_400Regular,
-  EBGaramond_500Medium,
-  EBGaramond_600SemiBold,
-  EBGaramond_700Bold,
-  EBGaramond_800ExtraBold,
-} from "@expo-google-fonts/eb-garamond";
-import { SafeAreaView } from "react-native-safe-area-context";
-import { TabView, SceneMap, TabBar } from "react-native-tab-view";
-import { useState } from "react";
-
-const FirstRoute = () => <View className="grow bg-[#FDEED7]" />;
-
-const SecondRoute = () => <View className="grow bg-[#FDEED7]" />;
-
-const renderScene = SceneMap({
-  first: FirstRoute,
-  second: SecondRoute,
-});
+import LoginScreen from "./screens/LoginScreen";
+import HomeScreen from "./screens/HomeScreen";
+import auth from "@react-native-firebase/auth";
+import { useEffect, useState } from "react";
 
 export default function Index() {
-  let [fontsLoaded, fontError] = useFonts({
-    EBGaramond_400Regular,
-    EBGaramond_500Medium,
-    EBGaramond_600SemiBold,
-    EBGaramond_700Bold,
-    EBGaramond_800ExtraBold,
-  });
+  const [initializing, setInitializing] = useState(true);
+  const [user, setUser] = useState();
 
-  const layout = useWindowDimensions();
-  const [index, setIndex] = useState(0);
-  const [routes] = useState([
-    { key: "first", title: "Mes Livres" },
-    { key: "second", title: "A Lire" },
-  ]);
-
-  if (!fontsLoaded && !fontError) {
-    return null;
+  function onAuthStateChanged(user: any) {
+    setUser(user);
+    if (initializing) setInitializing(false);
   }
 
-  return (
-    <SafeAreaView className="grow bg-[#FDEED7] ">
-      <StatusBar style="dark" />
-      <Text
-        style={{ fontFamily: "EBGaramond_600SemiBold" }}
-        className="text-3xl p-5"
-      >
-        Bonjour, utilisateur
-      </Text>
-      <TabView
-        renderTabBar={(props) => (
-          <TabBar
-            {...props}
-            className="bg-[#FDEED7]"
-            renderLabel={({ route }) => (
-              <Text
-                style={{ fontFamily: "EBGaramond_500Medium" }}
-                className="text-xl"
-              >
-                {route.title}
-              </Text>
-            )}
-          />
-        )}
-        navigationState={{ index, routes }}
-        renderScene={renderScene}
-        onIndexChange={setIndex}
-        initialLayout={{ width: layout.width }}
-      />
-    </SafeAreaView>
-  );
+  useEffect(() => {
+    auth().onAuthStateChanged(onAuthStateChanged);
+  }, []);
+
+  // if (initializing) return null;
+
+  return user ? <HomeScreen /> : <LoginScreen />;
 }

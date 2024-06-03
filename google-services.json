@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "447102207555",
+    "project_id": "bouquine-b9430",
+    "storage_bucket": "bouquine-b9430.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:447102207555:android:110f81719bcd04247e76f6",
+        "android_client_info": {
+          "package_name": "com.valentinGuillot.bouquine"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAayz3gxKGxFVQRqUXRJtz2Ko9OJr0bgOo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
